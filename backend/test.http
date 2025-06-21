@@ -1,0 +1,30 @@
+### Test Pathfinding API
+POST http://localhost:5000/api/path
+Content-Type: application/json
+
+{
+  "graph": {
+    "A": { "B": 2, "D": 1 },
+    "B": { "A": 2, "C": 2 },
+    "C": { "B": 2, "F": 3 },
+    "D": { "A": 1, "E": 4 },
+    "E": { "D": 4, "F": 1 },
+    "F": { "E": 1, "C": 3 }
+  },
+  "positions": {
+    "A": [0, 0],
+    "B": [2, 0],
+    "C": [4, 0],
+    "D": [0, 2],
+    "E": [2, 2],
+    "F": [4, 2]
+  },
+  "metadata": {
+    "C": { "price": 50, "quality": 4.5, "reviews": 80 },
+    "E": { "price": 70, "quality": 4.2, "reviews": 90 },
+    "F": { "price": 90, "quality": 4.9, "reviews": 60 }
+  },
+  "start": "A",
+  "goals": ["C", "E", "F"],
+  "user_type": "foodie"
+}
