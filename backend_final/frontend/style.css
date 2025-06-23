@@ -30,32 +30,42 @@ h1 {
 
 /* Columns */
 .col-1 {
-  width: 33.33%;
-  margin-right: 40px;
-  padding: 10px;
-  box-sizing: border-box;
-  border: 1px solid silver;
-  border-radius: 5px;
+    width: 33.33%;
+    margin-right: 40px;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid silver;
+    border-radius: 5px;
 }
 
 .col-2 {
-  width: 66.66%;
-  padding: 10px;
-  box-sizing: border-box;
-  background-color: green;
+    width: 66.66%;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid silver;
+    border-radius: 5px;
 }
 
 /* Rows */
+.rows {
+    border: 1px solid silver;
+    border-radius: 5px;
+}
+
 .row-1 {
-    height: 48%;
+    height: 59%;
     margin: 5px;
-    background-color: white;
+    background-color: #00703C;
 }
 
 .row-2 {
-    height: 24%;
-    margin: 5px;
-    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 18.5%;
+    margin: 10px 5px;
+    padding: 20px;
 }
 
 
@@ -70,16 +80,35 @@ h1 {
 }
 
 input[type="radio"] {
-  width: 30px;
-  height: 30px;
+    width: 30px;
+    height: 30px;
 }
 
 input[type="number"], input[type="checkbox"]  {
-  width: 60px;
-  height: 40px;
+    width: 60px;
+    height: 40px;
 }
 
 button {
     width: 48%;
     margin: 2px;
+}
+
+/* Info */
+.info {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.info-row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5px 25px;
+    font-size: 20px;
+}
+
+.info-row p {
+    margin: 0px;
 }
