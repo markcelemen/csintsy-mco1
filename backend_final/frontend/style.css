@@ -1,0 +1,85 @@
+body { margin: 0px; }
+
+/* Header */
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+h1 {
+    color: #00703C;
+    margin-bottom: 0;
+}
+
+.header p {
+    font-family: 'Times New Roman', Times, serif;
+    letter-spacing: 1.8px;
+}
+
+/* Main */
+.main {
+    display: flex;
+    flex-direction: row;
+    margin-right: 100px;
+    margin-left: 60px;
+    margin-bottom: 30px;
+}
+
+/* Columns */
+.col-1 {
+  width: 33.33%;
+  margin-right: 40px;
+  padding: 10px;
+  box-sizing: border-box;
+  border: 1px solid silver;
+  border-radius: 5px;
+}
+
+.col-2 {
+  width: 66.66%;
+  padding: 10px;
+  box-sizing: border-box;
+  background-color: green;
+}
+
+/* Rows */
+.row-1 {
+    height: 48%;
+    margin: 5px;
+    background-color: white;
+}
+
+.row-2 {
+    height: 24%;
+    margin: 5px;
+    background-color: white;
+}
+
+
+/* Inputs */
+#algorithms td {
+    padding-right: 10px;
+}
+
+#preferences td {
+    padding-right: 185px;
+    white-space: nowrap;
+}
+
+input[type="radio"] {
+  width: 30px;
+  height: 30px;
+}
+
+input[type="number"], input[type="checkbox"]  {
+  width: 60px;
+  height: 40px;
+}
+
+button {
+    width: 48%;
+    margin: 2px;
+}
