@@ -1,0 +1,114 @@
+body { margin: 0px; }
+
+/* Header */
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+h1 {
+    color: #00703C;
+    margin-bottom: 0;
+}
+
+.header p {
+    font-family: 'Times New Roman', Times, serif;
+    letter-spacing: 1.8px;
+}
+
+/* Main */
+.main {
+    display: flex;
+    flex-direction: row;
+    margin-right: 100px;
+    margin-left: 60px;
+    margin-bottom: 30px;
+}
+
+/* Columns */
+.col-1 {
+    width: 33.33%;
+    margin-right: 40px;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid silver;
+    border-radius: 5px;
+}
+
+.col-2 {
+    width: 66.66%;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid silver;
+    border-radius: 5px;
+}
+
+/* Rows */
+.rows {
+    border: 1px solid silver;
+    border-radius: 5px;
+}
+
+.row-1 {
+    height: 59%;
+    margin: 5px;
+    background-color: #00703C;
+}
+
+.row-2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 18.5%;
+    margin: 10px 5px;
+    padding: 20px;
+}
+
+
+/* Inputs */
+#algorithms td {
+    padding-right: 10px;
+}
+
+#preferences td {
+    padding-right: 185px;
+    white-space: nowrap;
+}
+
+input[type="radio"] {
+    width: 30px;
+    height: 30px;
+}
+
+input[type="number"], input[type="checkbox"]  {
+    width: 60px;
+    height: 40px;
+}
+
+button {
+    width: 48%;
+    margin: 2px;
+}
+
+/* Info */
+.info {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.info-row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5px 25px;
+    font-size: 20px;
+}
+
+.info-row p {
+    margin: 0px;
+}
