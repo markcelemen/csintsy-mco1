@@ -1,0 +1,34 @@
+body {
+      margin: 0;
+      background: #21c795;
+      font-family: Arial, sans-serif;
+    }
+h2 {
+      text-align: center;
+      padding: 20px;
+      color: #ffffff;
+    }
+#map {
+      position: relative;
+      margin: 0 auto;
+      width: 1500px;
+      height: 800px;
+      background: #24f7a6;
+      border: 3px solid #025324;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+.node {
+      position: absolute;
+      padding: 8px 12px;
+      background: #ffffff;
+      border: 2px solid #008d47;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: bold;
+      color: #008d47;
+      text-align: center;
+      transform: translate(-50%, -50%);
+      box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+      white-space: nowrap;
+    }
