@@ -2,7 +2,7 @@
 **MCO1: State-Based Pathfinding System**
 
 ## Project Overview
-This hcuchcugss uses intelligent pathfinding algorithms to help users find optimal routes to eateries around De La Salle University (DLSU). The system uses graph-based search algorithms (UCS and A*) combined with multi-criteria scoring to recommend the best dining options based on user preferences.
+This program uses intelligent pathfinding algorithms to help users find optimal routes to eateries around De La Salle University (DLSU). The system uses graph-based search algorithms (UCS and A*) combined with multi-criteria scoring to recommend the best dining options based on user preferences.
 
 ## Features
 - **Pathfinding Algorithms**: UCS (Uniform Cost Search) and A* with Haversine heuristic
