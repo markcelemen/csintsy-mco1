@@ -1,17 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>Map</title>
-  <link rel="stylesheet" href="map_styles.css">
-
-</head>
-<body>
-  <h2>Coordinate Map</h2>
-  <div id="map"></div>
-
-  <script>
-    const points = {
+ const points = {
       "DLSU Main Gate": [14.5645, 120.9932],
       "Andrew Building": [14.5652, 120.9940],
       "Henry Sy Bldg": [14.5660, 120.9955],
@@ -29,11 +16,11 @@
     const latMin = 14.5638, latMax = 14.5675;
     const lonMin = 120.9925, lonMax = 120.9985;
 
-    const mapWidth = 800, mapHeight = 800;
+    const mapWidth = 1900, mapHeight = 600;
     const margin = 75; //padding sa edges
 
-    const scaleX = (lon) => margin + ((lon - lonMin) / (lonMax - lonMin)) * (mapWidth - 2 * margin) * 1.9;
-    const scaleY = (lat) => margin + ((latMax - lat) / (latMax - latMin)) * (mapHeight - 2 * margin);
+    const scaleX = (lon) => margin + ((lon - lonMin) / (lonMax - lonMin)) * (mapWidth - 2 * margin) *0.55;
+    const scaleY = (lat) => margin + ((latMax - lat) / (latMax - latMin)) * (mapHeight - 2 * margin) * 0.6; 
 
     const map = document.getElementById("map");
 
@@ -49,6 +36,3 @@
       node.textContent = name;
       map.appendChild(node);
     }
-  </script>
-</body>
-</html>

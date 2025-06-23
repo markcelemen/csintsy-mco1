@@ -1,18 +1,8 @@
-body {
-      margin: 0;
-      background: #21c795;
-      font-family: Arial, sans-serif;
-    }
-h2 {
-      text-align: center;
-      padding: 20px;
-      color: #ffffff;
-    }
+
+
 #map {
       position: relative;
       margin: 0 auto;
-      width: 1500px;
-      height: 800px;
       background: #24f7a6;
       border: 3px solid #025324;
       border-radius: 12px;
