@@ -74,11 +74,11 @@ Sample Request Body:
 ```
 {
   "start": "The value from the start-location-dropdown",
-  "algorithm": "astar", // Default to A*, can be made selectable
-  "preferences": { // Optional: include if the user saved preferences
+  "algorithm": "astar", 
+  "preferences": { 
     "rating": 1,
     "price": 2
-    // ... other ranks
+    // ... others
   }
 }
 ```
