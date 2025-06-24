@@ -46,35 +46,35 @@
                     </table><br>
 
                     <h4>Preferences Section</h4>
-                    <p>Set your preferences (1 = Most Important | 7 = Least Important)</p>
+                    <p>Set your preferences (10 - Highest priority)</p>
                     <table id="preferences">
                         <tr>
                             <td><label>Distance</label></td>
-                            <td><input name="distance" class="form-control" type="number" min="0" max="7"></td>
+                            <td><input name="distance" class="form-control" type="number" min="0" max="10"></td>
                         </tr>
                         <tr>
                             <td><label>Rating</label></td>
-                            <td><input name="rating" class="form-control" type="number" min="0" max="7"></td>
+                            <td><input name="rating" class="form-control" type="number" min="0" max="10"></td>
                         </tr>
                         <tr>
                             <td><label>Price</label></td>
-                            <td><input name="price" class="form-control" type="number" min="0" max="7"></td>
+                            <td><input name="price" class="form-control" type="number" min="0" max="10"></td>
                         </tr>
                         <tr>
                             <td><label>Wi-Fi</label></td>
-                            <td><input name="wi_fi" class="form-control" type="number" min="0" max="7"></td>
+                            <td><input name="wi_fi" class="form-control" type="number" min="0" max="10"></td>
                         </tr>
                         <tr>
                             <td><label>Power Outlets</label></td>
-                            <td><input name="power_out" class="form-control" type="number" min="0" max="7"></td>
+                            <td><input name="power_out" class="form-control" type="number" min="0" max="10"></td>
                         </tr>
                         <tr>
                             <td><label>Halal Certified</label></td>
-                             <td><input name="halal_cert" class="form-control" type="number" min="0" max="7"></td>
+                             <td><input name="halal_cert" class="form-control" type="number" min="0" max="10"></td>
                         </tr>
                         <tr>
                             <td><label>Air Conditioning</label></td>
-                             <td><input name="aircon" class="form-control" type="number" min="0" max="7"></td>
+                             <td><input name="aircon" class="form-control" type="number" min="0" max="10"></td>
                         </tr>
                     </table><br>
                     
@@ -84,17 +84,17 @@
             </div>
             <div class="col-2">
                 <div id="map" class="rows row-1">
-
+                    <canvas id="pathCanvas" width="1900" height="600"></canvas>
                 </div>
                 <div id="destination" class="rows row-2">
-                    <h3>Name of Destination</h3>
+                    <h3 id="end node">Name of Destination</h3>
                     <div class="info">
                         <div class="info-row">
-                            <p>?</p>
-                            <p>Total Distance</p>
+                            <p id = "distance">?</p>
+                            <p >Total Distance</p>
                         </div>
                         <div class="info-row">
-                            <p>?</p>
+                            <p id = cost>?</p>
                             <p>Total Cost</p>
                         </div>
                     </div>
@@ -103,15 +103,15 @@
                    <h3>Performance Metrics</h3>
                     <div class="info">
                         <div class="info-row">
-                            <p>?</p>
+                            <p id ="memcomplex">?</p>
                             <p>Memory Complexity</p>
                         </div>
                         <div class="info-row">
-                            <p>?</p>
+                            <p id = "timecomplex ">?</p>
                             <p>Time Complexity</p>
                         </div>
                         <div class="info-row">
-                            <p>?</p>
+                            <p id ="optimality">?</p>
                             <p>Optimality</p>
                         </div>
                     </div>

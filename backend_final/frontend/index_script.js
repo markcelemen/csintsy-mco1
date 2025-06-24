@@ -24,7 +24,48 @@ document.getElementById("form").addEventListener("submit", function (e) {
     .then((res) => res.json())
     .then((data) => {
       console.log("End node:", data.goal);
+      console.log("path", data.path);
       console.log ("fetch done");
+
+      document.getElementById("end node").textContent = data.goal;
+      document.getElementById("distance").textContent = data.distance.toFixed(2);
+      document.getElementById("cost").textContent = data.cost.toFixed(2);
+        
+      const canvas = document.getElementById("pathCanvas");
+    const ctx = canvas.getContext("2d");
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.strokeStyle = "red";
+    ctx.lineWidth = 4;
+
+    const path = data.path;
+
+    if (path.length > 1 && window.points && window.scaleX && window.scaleY) {
+      ctx.beginPath();
+
+      for (let i = 0; i < path.length; i++) {
+        const nodeName = path[i];
+        const coords = window.points[nodeName]; //gets yung long/lat sa map_script 
+
+        if (!coords) {
+          console.warn(` No coordinates found for node: "${nodeName}"`); // just in case mali yung input ng name sa map script
+          continue;
+        }
+
+        const [lat, lon] = coords;
+        const x = window.scaleX(lon);
+        const y = window.scaleY(lat);
+
+        if (i === 0) {
+          ctx.moveTo(x, y);
+        } else {
+          ctx.lineTo(x, y);
+        }
+      }
+
+      ctx.stroke();
+    } else {
+      console.error("Missing path data");
+    }
     })
     .catch((err) => console.error("Error:", err));
 });
