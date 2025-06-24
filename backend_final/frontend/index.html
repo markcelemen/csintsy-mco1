@@ -62,24 +62,26 @@
                         </tr>
                         <tr>
                             <td><label>Wi-Fi</label></td>
-                            <td><input name="wi_fi" class="form-control" type="number" min="0" max="10"></td>
+                            <td><input name="wi_fi" class="form-check-input" type="checkbox" value="1"></td>
                         </tr>
                         <tr>
                             <td><label>Power Outlets</label></td>
-                            <td><input name="power_out" class="form-control" type="number" min="0" max="10"></td>
+                            <td><input name="power_out" class="form-check-input" type="checkbox" value="1"></td>
                         </tr>
                         <tr>
                             <td><label>Halal Certified</label></td>
-                             <td><input name="halal_cert" class="form-control" type="number" min="0" max="10"></td>
+                             <td><input name="halal_cert" class="form-check-input" type="checkbox" value="1"></td>
                         </tr>
                         <tr>
                             <td><label>Air Conditioning</label></td>
-                             <td><input name="aircon" class="form-control" type="number" min="0" max="10"></td>
+                             <td><input name="aircon" class="form-check-input" type="checkbox" value="1"></td>
                         </tr>
                     </table><br>
                     
-                    <button class="btn btn-outline-secondary" type="reset">Reset to Default</button>
-                    <button id="submit" class="btn btn-primary" type="submit" value="submit">Find The Best Path</button>
+                    <button id="find_path" class="btn btn-success" type="submit" value="submit">Find The Best Path</button>
+                    <button id="compare_algo" class="btn btn-success" type="submit" value="submit">Compare Algorithms</button>
+                    <button class="btn btn-secondary" type="reset">Reset to Default</button>
+                    <button id="top_eateries" class="btn btn-success" type="submit" value="submit">Top Eateries</button>
                 </form>
             </div>
             <div class="col-2">
@@ -87,7 +89,7 @@
                     <canvas id="pathCanvas" width="1900" height="600"></canvas>
                 </div>
                 <div id="destination" class="rows row-2">
-                    <h3 id="end node">Name of Destination</h3>
+                    <h4 id="end node">Performance Metrics From ? to ?</h4>
                     <div class="info">
                         <div class="info-row">
                             <p id = "distance">?</p>
@@ -97,22 +99,34 @@
                             <p id = cost>?</p>
                             <p>Total Cost</p>
                         </div>
-                    </div>
-                </div>
-                <div id="performance_metrics" class="rows row-2">
-                   <h3>Performance Metrics</h3>
-                    <div class="info">
+                        <div class="info-row">
+                            <p id ="timecomplex ">?</p>
+                            <p>Time Complexity</p>
+                        </div>
                         <div class="info-row">
                             <p id ="memcomplex">?</p>
                             <p>Memory Complexity</p>
                         </div>
+                    </div>
+                </div>
+                <div id="performance_metrics" class="rows row-2">
+                   <h4>Compared with ? Algorithm</h4>
+                    <div class="info">
                         <div class="info-row">
-                            <p id = "timecomplex ">?</p>
+                            <p id = "distance">?</p>
+                            <p >Total Distance</p>
+                        </div>
+                        <div class="info-row">
+                            <p id = cost>?</p>
+                            <p>Total Cost</p>
+                        </div>
+                        <div class="info-row">
+                            <p id ="timecomplex ">?</p>
                             <p>Time Complexity</p>
                         </div>
                         <div class="info-row">
-                            <p id ="optimality">?</p>
-                            <p>Optimality</p>
+                            <p id ="memcomplex">?</p>
+                            <p>Memory Complexity</p>
                         </div>
                     </div>
                 </div>
