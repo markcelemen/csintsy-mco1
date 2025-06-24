@@ -217,11 +217,11 @@ Response: [
   ```
 - **Remove Edge:**  
   ```javascript
-DELETE /graph/edges
-{
-  "node_a": "Andrew_Building",
-  "node_b": "Library"
-}
+   DELETE /graph/edges
+   {
+      "node_a": "Andrew_Building",
+     "node_b": "Library"
+   }
   ```
 
 ---
@@ -307,4 +307,3 @@ POST /graph/eatery-nodes
   - 400: Invalid request  
   - 404: Resource not found  
   - 500: Server error  
-  ```
