@@ -17,10 +17,10 @@ document.getElementById("form").addEventListener("submit", function (e) {
     distance: Number(document.querySelector('[name="distance"]').value) || 0,
     rating: Number(document.querySelector('[name="rating"]').value) || 0,
     price: Number(document.querySelector('[name="price"]').value) || 0,
-    wi_fi: Number(document.querySelector('[name="wi_fi"]').value) || 0,
-    power_out: Number(document.querySelector('[name="power_out"]').value) || 0,
-    halal_cert: Number(document.querySelector('[name="halal_cert"]').value) || 0,
-    aircon: Number(document.querySelector('[name="aircon"]').value) || 0,
+    wi_fi: Number(document.querySelector('[name="wi_fi"]').checked ? 1 : 0),
+    power_out: Number(document.querySelector('[name="power_out"]').checked ? 1 : 0),
+    halal_cert: Number(document.querySelector('[name="halal_cert"]').checked ? 1 : 0),
+    aircon: Number(document.querySelector('[name="aircon"]').checked ? 1 : 0),
   };
 
   fetch("http://localhost:5000/find-path", {
@@ -38,10 +38,11 @@ document.getElementById("form").addEventListener("submit", function (e) {
 
       document.getElementById("performance_heading").textContent = `Performance Metrics From ${formatName(start)} to ${formatName(data.goal)}`;
 
-      document.getElementById("end node").textContent = data.goal;
       document.getElementById("distance").textContent = data.distance.toFixed(2);
       document.getElementById("cost").textContent = data.cost.toFixed(2);
-        
+      document.getElementById("timecomplex").textContent = data.time_complexity;
+      document.getElementById("memcomplex").textContent = data.memory_complexity;
+
       const canvas = document.getElementById("pathCanvas");
       const ctx = canvas.getContext("2d");
       ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -49,30 +50,18 @@ document.getElementById("form").addEventListener("submit", function (e) {
       ctx.lineWidth = 4;
 
       const path = data.path;
-
       if (path.length > 1 && window.points && window.scaleX && window.scaleY) {
         ctx.beginPath();
-
         for (let i = 0; i < path.length; i++) {
           const nodeName = path[i];
           const coords = window.points[nodeName];
-
-          if (!coords) {
-            console.warn(`No coordinates found for node: "${nodeName}"`);
-            continue;
-          }
-
+          if (!coords) continue;
           const [lat, lon] = coords;
           const x = window.scaleX(lon);
           const y = window.scaleY(lat);
-
-          if (i === 0) {
-            ctx.moveTo(x, y);
-          } else {
-            ctx.lineTo(x, y);
-          }
+          if (i === 0) ctx.moveTo(x, y);
+          else ctx.lineTo(x, y);
         }
-
         ctx.stroke();
       } else {
         console.error("Missing path data");
@@ -81,9 +70,6 @@ document.getElementById("form").addEventListener("submit", function (e) {
     .catch((err) => console.error("Error:", err));
 });
 
-// helper function to format node names (e.g., DLSU_Main_Gate into DLSU Main Gate)
 function formatName(name) {
-  return name
-    .replace(/_/g, ' ')
-    .replace(/\b\w/g, char => char.toUpperCase()); 
+  return name.replace(/_/g, ' ').replace(/\b\w/g, char => char.toUpperCase());
 }
