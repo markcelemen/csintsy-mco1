@@ -81,7 +81,7 @@ document.getElementById("form").addEventListener("submit", function (e) {
     .catch((err) => console.error("Error:", err));
 });
 
-// helper func to fomrat node names (e.g., DLSU_Main_Gate → DLSU Main Gate)
+// helper function to format node names (e.g., DLSU_Main_Gate into DLSU Main Gate)
 function formatName(name) {
   return name
     .replace(/_/g, ' ')
