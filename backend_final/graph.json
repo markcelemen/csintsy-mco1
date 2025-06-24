@@ -1,18 +1,65 @@
-
 {
   "nodes": {
-    "DLSU_Main_Gate": [14.5645, 120.9932],
-    "Andrew_Building": [14.5652, 120.9940],
-    "Henry_Sy_Bldg": [14.5660, 120.9955],
-    "St_Joseph_Bldg": [14.5650, 120.9968],
-    "Chowking_DLSU": [14.5648, 120.9975],
-    "Starbucks_DLSU": [14.5665, 120.9980],
-    "McDonalds_DLSU": [14.5672, 120.9965],
-    "Greenwich_DLSU": [14.5670, 120.9950],
-    "Halal_Street": [14.5655, 120.9985],
-    "Study_Cafe": [14.5662, 120.9945],
-    "KFC_DLSU": [14.5675, 120.9970],
-    "Bacsilog_King": [14.5638, 120.9925]
+    "DLSU_Main_Gate": [
+      14.5645,
+      120.9932
+    ],
+    "Andrew_Building": [
+      14.5652,
+      120.994
+    ],
+    "Henry_Sy_Bldg": [
+      14.566,
+      120.9955
+    ],
+    "St_Joseph_Bldg": [
+      14.565,
+      120.9968
+    ],
+    "Chowking_DLSU": [
+      14.5648,
+      120.9975
+    ],
+    "Starbucks_DLSU": [
+      14.5665,
+      120.998
+    ],
+    "McDonalds_DLSU": [
+      14.5672,
+      120.9965
+    ],
+    "Greenwich_DLSU": [
+      14.567,
+      120.995
+    ],
+    "Halal_Street": [
+      14.5655,
+      120.9985
+    ],
+    "Study_Cafe": [
+      14.5662,
+      120.9945
+    ],
+    "KFC_DLSU": [
+      14.5675,
+      120.997
+    ],
+    "Bacsilog_King": [
+      14.5638,
+      120.9925
+    ],
+    "Test_1": [
+      14.21,
+      120.899
+    ],
+    "Test_eatery": [
+      14.5651,
+      120.9952
+    ],
+    "Test_withedge": [
+      14.567,
+      120.9965
+    ]
   },
   "edges": {
     "DLSU_Main_Gate": {
@@ -31,7 +78,8 @@
       "McDonalds_DLSU": 55.0,
       "Greenwich_DLSU": 40.0,
       "KFC_DLSU": 60.0,
-      "Starbucks_DLSU": 80.0
+      "Starbucks_DLSU": 80.0,
+      "Test_withedge": 4.0
     },
     "St_Joseph_Bldg": {
       "Andrew_Building": 95.0,
@@ -80,6 +128,11 @@
     },
     "Bacsilog_King": {
       "DLSU_Main_Gate": 50.0
+    },
+    "Test_1": {},
+    "Test_eatery": {},
+    "Test_withedge": {
+      "Henry_Sy_Bldg": 4.0
     }
   }
 }

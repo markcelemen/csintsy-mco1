@@ -1,4 +1,3 @@
-
 {
   "Chowking_DLSU": {
     "name": "Chowking DLSU",
@@ -98,5 +97,38 @@
     "aircon": 1,
     "hours": "7:00-19:00",
     "address": "Andrew Building, DLSU"
+  },
+  "Test_1": {
+    "name": "Test eatery",
+    "rating": 3.5,
+    "price": 5,
+    "hours": "9:00-18:00",
+    "power_outlet": 1,
+    "halal_certified": 0,
+    "wifi": 0,
+    "aircon": 1,
+    "address": "N/A"
+  },
+  "Test_eatery": {
+    "name": "Test eatery",
+    "rating": 3.5,
+    "price": 5,
+    "hours": "9:00-18:00",
+    "power_outlet": 1,
+    "halal_certified": 0,
+    "wifi": 1,
+    "aircon": 0,
+    "address": "N/A"
+  },
+  "Test_withedge": {
+    "name": "Test eatery edge",
+    "rating": 2.6,
+    "price": 2,
+    "hours": "9:00-18:00",
+    "power_outlet": 1,
+    "halal_certified": 1,
+    "wifi": 0,
+    "aircon": 0,
+    "address": "N/A"
   }
 }

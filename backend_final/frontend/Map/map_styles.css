@@ -32,3 +32,25 @@
       white-space: nowrap;
     }
   
+#node_controls {
+  margin-bottom: 12px;
+  display: flex;
+  gap: 10px;
+}
+
+button {
+    width: 31.33%;
+    height: 60px;
+    margin: 2px;
+}
+
+#add_node {
+    background-color: #68f73081;
+    color: white;
+    font: time,serif;
+}
+
+#remove_node {
+    background-color: #68f73081; /* or another color you prefer */
+    color: white;
+}

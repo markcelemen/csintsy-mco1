@@ -785,14 +785,19 @@ def compare_algorithms(start_node, preferences=None):
             if "error" in path_result:
                 results[algo] = {"error": path_result["error"]}
             else:
-                results[algo] = {
+                 metrics = {
+                    "distance": path_result.get("distance", 0),
+                    "time_complexity": path_result.get("time_complexity", 0),
+                    "memory_complexity": path_result.get("memory_complexity", 0),
+                    "total_execution_time_ms": round(total_time * 1000, 2)
+                }
+
+                 results[algo] = {
                     "path": path_result["path"],
                     "cost": path_result["cost"],
                     "eatery": path_result["goal"],
-                    "metrics": path_result["metrics"]
+                    "metrics": metrics
                 }
-                results[algo]["metrics"]["total_execution_time_ms"] = round(total_time * 1000, 2)
-        
         return results
     except Exception as e:
         return {"error": f"Comparison failed: {str(e)}"}
