@@ -4,6 +4,15 @@ document.getElementById("form").addEventListener("submit", function (e) {
   const start = document.getElementById("start_point").value;
   const algorithm = document.querySelector('input[name="algo_select"]:checked')?.value;
 
+  const compareHeading = document.getElementById("compare_heading");
+  if (algorithm === "ucs") {
+    compareHeading.textContent = "Compared with A* Search Algorithm";
+  } else if (algorithm === "astar") {
+    compareHeading.textContent = "Compared with Uniform Cost Search Algorithm";
+  } else {
+    compareHeading.textContent = "Compared with ? Algorithm";
+  }
+
   const preferences = {
     distance: Number(document.querySelector('[name="distance"]').value) || 0,
     rating: Number(document.querySelector('[name="rating"]').value) || 0,
@@ -25,47 +34,56 @@ document.getElementById("form").addEventListener("submit", function (e) {
     .then((data) => {
       console.log("End node:", data.goal);
       console.log("path", data.path);
-      console.log ("fetch done");
+      console.log("fetch done");
+
+      document.getElementById("performance_heading").textContent = `Performance Metrics From ${formatName(start)} to ${formatName(data.goal)}`;
 
       document.getElementById("end node").textContent = data.goal;
       document.getElementById("distance").textContent = data.distance.toFixed(2);
       document.getElementById("cost").textContent = data.cost.toFixed(2);
         
       const canvas = document.getElementById("pathCanvas");
-    const ctx = canvas.getContext("2d");
+      const ctx = canvas.getContext("2d");
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.strokeStyle = "red";
-    ctx.lineWidth = 4;
+      ctx.strokeStyle = "red";
+      ctx.lineWidth = 4;
 
-    const path = data.path;
+      const path = data.path;
 
-    if (path.length > 1 && window.points && window.scaleX && window.scaleY) {
-      ctx.beginPath();
+      if (path.length > 1 && window.points && window.scaleX && window.scaleY) {
+        ctx.beginPath();
 
-      for (let i = 0; i < path.length; i++) {
-        const nodeName = path[i];
-        const coords = window.points[nodeName]; //gets yung long/lat sa map_script 
+        for (let i = 0; i < path.length; i++) {
+          const nodeName = path[i];
+          const coords = window.points[nodeName];
 
-        if (!coords) {
-          console.warn(` No coordinates found for node: "${nodeName}"`); // just in case mali yung input ng name sa map script
-          continue;
+          if (!coords) {
+            console.warn(`No coordinates found for node: "${nodeName}"`);
+            continue;
+          }
+
+          const [lat, lon] = coords;
+          const x = window.scaleX(lon);
+          const y = window.scaleY(lat);
+
+          if (i === 0) {
+            ctx.moveTo(x, y);
+          } else {
+            ctx.lineTo(x, y);
+          }
         }
 
-        const [lat, lon] = coords;
-        const x = window.scaleX(lon);
-        const y = window.scaleY(lat);
-
-        if (i === 0) {
-          ctx.moveTo(x, y);
-        } else {
-          ctx.lineTo(x, y);
-        }
+        ctx.stroke();
+      } else {
+        console.error("Missing path data");
       }
-
-      ctx.stroke();
-    } else {
-      console.error("Missing path data");
-    }
     })
     .catch((err) => console.error("Error:", err));
 });
+
+// helper func to fomrat node names (e.g., DLSU_Main_Gate → DLSU Main Gate)
+function formatName(name) {
+  return name
+    .replace(/_/g, ' ')
+    .replace(/\b\w/g, char => char.toUpperCase()); 
+}
