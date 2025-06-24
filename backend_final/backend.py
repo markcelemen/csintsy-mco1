@@ -193,6 +193,19 @@ def remove_node(graph, node_id):
     
     return graph, f"Node {node_id} removed successfully"
 
+# EATERY VALIDATION
+REQUIRED_EATERY_ATTRIBUTES = {
+    'name', 'rating', 'price', 'hours',
+    'power_outlet', 'halal_certified', 'wifi', 'aircon'
+}
+
+def validate_eatery_attributes(attrs):
+    """Ensure all required attributes are present"""
+    missing = REQUIRED_EATERY_ATTRIBUTES - set(attrs.keys())
+    if missing:
+        return False, f"Missing required attributes: {', '.join(missing)}"
+    return True, ""
+
 def remove_edge(graph, node_a, node_b):
     """Remove bidirectional edge between nodes"""
     if node_a not in graph["nodes"] or node_b not in graph["nodes"]:
@@ -265,9 +278,14 @@ def update_eatery(attributes, eatery_id, new_attrs):
     if not isinstance(new_attrs, dict):
         return attributes, "Attributes must be a dictionary"
     
-    attributes.setdefault(eatery_id, {})
+    # === NEW VALIDATION ===
+    # Validate required attributes for new eateries
+    if eatery_id not in attributes:
+        valid, msg = validate_eatery_attributes(new_attrs)
+        if not valid:
+            return attributes, msg
     
-    # Convert boolean features to 1/0
+    # === EXISTING CONVERSION LOGIC ===
     bool_features = {'power_outlet', 'halal_certified', 'wifi', 'aircon'}
     for key, value in new_attrs.items():
         if key in bool_features:
@@ -277,8 +295,13 @@ def update_eatery(attributes, eatery_id, new_attrs):
                 value = 1 if value.lower() in ['true', 'yes', '1', 'y', 't'] else 0
             elif isinstance(value, (int, float)):
                 value = 1 if value != 0 else 0
-        
-        attributes[eatery_id][key] = value
+            new_attrs[key] = value
+    
+    # Update attributes
+    if eatery_id in attributes:
+        attributes[eatery_id].update(new_attrs)
+    else:
+        attributes[eatery_id] = new_attrs
     
     return attributes, f"Eatery {eatery_id} updated successfully"
 
@@ -289,6 +312,27 @@ def remove_eatery(attributes, eatery_id):
     
     del attributes[eatery_id]
     return attributes, f"Eatery {eatery_id} removed successfully"
+
+def add_eatery_node(graph, attributes, node_id, lat, lng, attrs):
+    """Add new eatery node with full attributes in single transaction"""
+    # Validate required attributes
+    valid, msg = validate_eatery_attributes(attrs)
+    if not valid:
+        return graph, attributes, msg
+    
+    # Add to graph
+    graph, msg = add_node(graph, node_id, lat, lng)
+    if "error" in msg:
+        return graph, attributes, msg
+    
+    # Add to attributes
+    attributes, msg = update_eatery(attributes, node_id, attrs)
+    if "error" in msg:
+        # Rollback graph addition
+        graph, _ = remove_node(graph, node_id)
+        return graph, attributes, msg
+    
+    return graph, attributes, f"Eatery node {node_id} created successfully"
 
 # =====================
 # GEOGRAPHIC CALCULATIONS
