@@ -694,11 +694,9 @@ def find_optimal_path(start_node, algorithm='astar', custom_ranks=None):
                 "weights_used": weights,
                 "open_status": "Open" if is_open(eatery_data.get('hours', '')) else "Closed",
                 "distance": haversine(*graph["nodes"][start_node], *graph["nodes"][eatery_id]),
-                "metrics": {
-                    "execution_time_ms": round(metrics["exec_time"] * 1000, 2),
-                    "nodes_expanded": metrics["nodes_expanded"],
-                    "max_frontier_size": metrics["max_frontier_size"]
-                }
+                "time_complexity": round(metrics["exec_time"] * 1000, 2),
+                "nodes_expanded": metrics["nodes_expanded"],
+                "memory_complexity": metrics["max_frontier_size"]
             }
         
         return {"error": "No reachable eateries found"}
