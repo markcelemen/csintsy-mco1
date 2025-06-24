@@ -1,0 +1,30 @@
+Pathfinding & Algorithm Tests
+
+curl -X POST http://localhost:5000/find-path -H "Content-Type: application/json" -d "{\"start\":\"DLSU_Main_Gate\",\"algorithm\":\"ucs\"}"
+curl -X POST http://localhost:5000/find-path -H "Content-Type: application/json" -d "{\"start\":\"Henry_Sy_Bldg\",\"algorithm\":\"astar\"}"
+curl -X POST http://localhost:5000/find-path -H "Content-Type: application/json" -d "{\"start\":\"St_Joseph_Bldg\",\"preferences\":{\"distance\":1,\"rating\":2}}"
+curl -X POST http://localhost:5000/top-eateries -H "Content-Type: application/json" -d "{\"start\":\"DLSU_Main_Gate\"}"
+curl -X POST http://localhost:5000/top-eateries -H "Content-Type: application/json" -d "{\"start\":\"Andrew_Building\",\"top_n\":5,\"preferences\":{\"halal_certified\":1}}"
+curl -X POST http://localhost:5000/compare-algorithms -H "Content-Type: application/json" -d "{\"start\":\"DLSU_Main_Gate\"}"
+curl -X POST http://localhost:5000/compare-algorithms -H "Content-Type: application/json" -d "{\"start\":\"Greenwich_DLSU\",\"preferences\":{\"price\":1}}"
+
+Graph & Eatery Management Tests
+
+curl -X POST http://localhost:5000/graph/nodes -H "Content-Type: application/json" -d "{\"id\":\"Cafeteria\",\"lat\":14.5658,\"lng\":120.9965}"
+curl -X POST http://localhost:5000/graph/edges -H "Content-Type: application/json" -d "{\"node_a\":\"Andrew_Building\",\"node_b\":\"Cafeteria\",\"cost\":25.0}"
+curl http://localhost:5000/graph
+curl -X DELETE http://localhost:5000/graph/edges -H "Content-Type: application/json" -d "{\"node_a\":\"Andrew_Building\",\"node_b\":\"Cafeteria\"}"
+curl -X DELETE http://localhost:5000/graph/nodes/Cafeteria
+curl -X POST http://localhost:5000/graph/eatery-nodes -H "Content-Type: application/json" -d "{\"id\":\"Test_Eatery\",\"lat\":14.5650,\"lng\":120.9970,\"attributes\":{\"name\":\"Test Eatery\",\"rating\":4.0,\"price\":2,\"hours\":\"9:00-18:00\",\"power_outlet\":1,\"halal_certified\":0,\"wifi\":1,\"aircon\":1,\"address\":\"Test Location\"}}"
+curl -X PUT http://localhost:5000/eateries/McDonalds_DLSU -H "Content-Type: application/json" -d "{\"attributes\":{\"wifi\":0}}"
+curl http://localhost:5000/eateries
+curl -X DELETE http://localhost:5000/eateries/Bacsilog_King
+curl http://localhost:5000/eateries
+
+Error Handling Tests
+
+curl -X POST http://localhost:5000/find-path -H "Content-Type: application/json" -d "{\"start\":\"Unknown_Location\"}"
+curl -X POST http://localhost:5000/find-path -H "Content-Type: application/json" -d "{\"start\":\"DLSU_Main_Gate\",\"algorithm\":\"dfs\"}"
+curl -X POST http://localhost:5000/find-path -H "Content-Type: application/json" -d "{}"
+curl -X POST http://localhost:5000/graph/eatery-nodes -H "Content-Type: application/json" -d "{\"id\":\"Bad_Eatery\",\"lat\":14.5650,\"lng\":120.9970,\"attributes\":{\"name\":\"Bad Eatery\",\"rating\":4.0}}"
+curl -X PUT http://localhost:5000/eateries/Invalid_Eatery -H "Content-Type: application/json" -d "{\"attributes\":{\"name\":\"Partial Attributes\"}}"
