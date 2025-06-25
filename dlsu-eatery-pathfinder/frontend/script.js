@@ -307,7 +307,11 @@ function renderCampusMap() {
         node.className = 'node';
         node.style.left = `${x}px`;
         node.style.top = `${y}px`;
-        node.textContent = formatNodeName(nodeId);
+        
+        node.textContent = campusEateries && campusEateries[nodeId]?.name
+        ? campusEateries[nodeId].name
+        : formatNodeName(nodeId);
+
         node.dataset.nodeId = nodeId;
         
         // Add eatery class if this node has eatery data
