@@ -1,0 +1,101 @@
+{
+  "Chowking_DLSU": {
+    "name": "Chowking DLSU",
+    "rating": 4.1,
+    "price": 2,
+    "power_outlet": 0,
+    "halal_certified": 1,
+    "wifi": 1,
+    "aircon": 1,
+    "hours": "24/7",
+    "address": "2401 Taft Ave, Malate, Manila"
+  },
+  "Starbucks_DLSU": {
+    "name": "Starbucks near DLSU",
+    "rating": 4.5,
+    "price": 3,
+    "power_outlet": 1,
+    "halal_certified": 0,
+    "wifi": 1,
+    "aircon": 1,
+    "hours": "24/7",
+    "address": "2410 Taft Ave, Malate, Manila"
+  },
+  "McDonalds_DLSU": {
+    "name": "McDonald's DLSU",
+    "rating": 4.0,
+    "price": 1,
+    "power_outlet": 0,
+    "halal_certified": 1,
+    "wifi": 1,
+    "aircon": 1,
+    "hours": "24/7",
+    "address": "2420 Taft Ave, Malate, Manila"
+  },
+  "Greenwich_DLSU": {
+    "name": "Greenwich Pizza DLSU",
+    "rating": 3.9,
+    "price": 2,
+    "power_outlet": 0,
+    "halal_certified": 0,
+    "wifi": 0,
+    "aircon": 1,
+    "hours": "24/7",
+    "address": "2430 Taft Ave, Malate, Manila"
+  },
+  "Halal_Street": {
+    "name": "Halal Street Food",
+    "rating": 4.3,
+    "price": 1,
+    "power_outlet": 0,
+    "halal_certified": 1,
+    "wifi": 0,
+    "aircon": 0,
+    "hours": "24/7",
+    "address": "Leon Guinto St, Malate, Manila"
+  },
+  "Study_Cafe": {
+    "name": "The Study Cafe",
+    "rating": 4.6,
+    "price": 3,
+    "power_outlet": 1,
+    "halal_certified": 0,
+    "wifi": 1,
+    "aircon": 1,
+    "hours": "24/7",
+    "address": "2450 Taft Ave, Malate, Manila"
+  },
+  "KFC_DLSU": {
+    "name": "KFC DLSU",
+    "rating": 4.0,
+    "price": 2,
+    "power_outlet": 1,
+    "halal_certified": 0,
+    "wifi": 1,
+    "aircon": 1,
+    "hours": "24/7",
+    "address": "2440 Taft Ave, Malate, Manila"
+  },
+  "Bacsilog_King": {
+    "name": "Bacsilog King",
+    "rating": 4.4,
+    "price": 1,
+    "power_outlet": 0,
+    "halal_certified": 0,
+    "wifi": 0,
+    "aircon": 0,
+    "hours": "24/7",
+    "address": "Fidel A. Reyes St, Malate, Manila"
+  },
+  "Andrew_Building": {
+    "name": "Andrew Cafe",
+    "rating": 4.2,
+    "price": 2,
+    "power_outlet": 1,
+    "halal_certified": 1,
+    "wifi": 1,
+    "aircon": 1,
+    "hours": "24/7",
+    "address": "Andrew Building, DLSU"
+  }
+}

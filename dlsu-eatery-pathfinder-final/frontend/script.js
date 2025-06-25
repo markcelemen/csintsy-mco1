@@ -307,11 +307,7 @@ function renderCampusMap() {
         node.className = 'node';
         node.style.left = `${x}px`;
         node.style.top = `${y}px`;
-        
-        node.textContent = campusEateries && campusEateries[nodeId]?.name
-        ? campusEateries[nodeId].name
-        : formatNodeName(nodeId);
-
+        node.textContent = formatNodeName(nodeId);
         node.dataset.nodeId = nodeId;
         
         // Add eatery class if this node has eatery data
@@ -596,22 +592,22 @@ function visualizePath(path, canvasId, color) {
 
 function resetPathfinder() {
     // Reset sliders to default values
-    document.getElementById('distancePref').value = 1;
-    document.getElementById('ratingPref').value = 1;
-    document.getElementById('pricePref').value = 1;
-    document.getElementById('outletPref').value = 1;
-    document.getElementById('halalPref').value = 1;
-    document.getElementById('wifiPref').value = 1;
-    document.getElementById('airconPref').value = 1;
+    document.getElementById('distancePref').value = 5;
+    document.getElementById('ratingPref').value = 8;
+    document.getElementById('pricePref').value = 7;
+    document.getElementById('outletPref').value = 6;
+    document.getElementById('halalPref').value = 5;
+    document.getElementById('wifiPref').value = 7;
+    document.getElementById('airconPref').value = 9;
     
     // Update displayed values
-    document.getElementById('distanceValue').textContent = '1';
-    document.getElementById('ratingValue').textContent = '1';
-    document.getElementById('priceValue').textContent = '1';
-    document.getElementById('outletValue').textContent = '1';
-    document.getElementById('halalValue').textContent = '1';
-    document.getElementById('wifiValue').textContent = '1';
-    document.getElementById('airconValue').textContent = '1';
+    document.getElementById('distanceValue').textContent = '5';
+    document.getElementById('ratingValue').textContent = '8';
+    document.getElementById('priceValue').textContent = '7';
+    document.getElementById('outletValue').textContent = '6';
+    document.getElementById('halalValue').textContent = '5';
+    document.getElementById('wifiValue').textContent = '7';
+    document.getElementById('airconValue').textContent = '9';
     
     // Clear results
     document.getElementById('pathCost').textContent = '-';

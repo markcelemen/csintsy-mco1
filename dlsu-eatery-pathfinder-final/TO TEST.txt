@@ -1,0 +1,17 @@
+TO TEST:
+
+cmd in backend dir:
+
+pip install -r requirements.txt
+
+python app.py
+
+cmd in frontend dir:
+
+python -m http.server 8080
+
+
+in browser:
+
+http://localhost:8000
+
