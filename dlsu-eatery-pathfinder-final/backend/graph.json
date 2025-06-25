@@ -1,0 +1,131 @@
+{
+  "nodes": {
+    "DLSU_Main_Gate": [
+      14.5645,
+      120.9932
+    ],
+    "Andrew_Building": [
+      14.5652,
+      120.995012
+    ],
+    "Henry_Sy_Bldg": [
+      14.566,
+      120.9955
+    ],
+    "St_Joseph_Bldg": [
+      14.565,
+      120.9968
+    ],
+    "Chowking_DLSU": [
+      14.5648,
+      120.9975
+    ],
+    "Starbucks_DLSU": [
+      14.5665,
+      120.998
+    ],
+    "McDonalds_DLSU": [
+      14.5672,
+      120.9965
+    ],
+    "Greenwich_DLSU": [
+      14.567,
+      120.995
+    ],
+    "Halal_Street": [
+      14.5655,
+      120.9985
+    ],
+    "Study_Cafe": [
+      14.5662,
+      120.9945
+    ],
+    "KFC_DLSU": [
+      14.5675,
+      120.997
+    ],
+    "Bacsilog_King": [
+      14.5638,
+      120.9925
+    ],
+    "Leon Guinto": [
+      14.5645,
+      120.99505
+    ],
+    "Razon Building": [
+      14.56585,
+      120.996
+    ]
+  },
+  "edges": {
+  "DLSU_Main_Gate": {
+    "Andrew_Building": 255.0,
+    "Bacsilog_King": 150.0,
+    "Leon Guinto": 180.0
+  },
+  "Andrew_Building": {
+    "DLSU_Main_Gate": 255.0,
+    "Henry_Sy_Bldg": 360.0,
+    "St_Joseph_Bldg": 285.0,
+    "Study_Cafe": 135.0,
+    "Razon Building": 120.0
+  },
+  "Henry_Sy_Bldg": {
+    "Andrew_Building": 360.0,
+    "McDonalds_DLSU": 165.0,
+    "Greenwich_DLSU": 120.0,
+    "KFC_DLSU": 180.0,
+    "Leon Guinto": 90.0
+  },
+  "St_Joseph_Bldg": {
+    "Andrew_Building": 285.0,
+    "Chowking_DLSU": 120.0,
+    "Halal_Street": 180.0,
+    "Razon Building": 159.0
+  },
+  "Study_Cafe": {
+    "Andrew_Building": 135.0
+  },
+  "Chowking_DLSU": {
+    "St_Joseph_Bldg": 120.0,
+    "Starbucks_DLSU": 210.0
+  },
+  "Starbucks_DLSU": {
+    "Chowking_DLSU": 210.0,
+    "Halal_Street": 105.0,
+    "McDonalds_DLSU": 195.0,
+    "Razon Building": 210.0
+  },
+  "McDonalds_DLSU": {
+    "Henry_Sy_Bldg": 165.0,
+    "KFC_DLSU": 120.0,
+    "Starbucks_DLSU": 195.0
+  },
+  "Greenwich_DLSU": {
+    "Henry_Sy_Bldg": 120.0,
+    "KFC_DLSU": 135.0
+  },
+  "Halal_Street": {
+    "St_Joseph_Bldg": 180.0,
+    "Starbucks_DLSU": 105.0
+  },
+  "KFC_DLSU": {
+    "Henry_Sy_Bldg": 180.0,
+    "McDonalds_DLSU": 120.0,
+    "Greenwich_DLSU": 135.0
+  },
+  "Bacsilog_King": {
+    "DLSU_Main_Gate": 150.0
+  },
+  "Leon Guinto": {
+    "Henry_Sy_Bldg": 90.0,
+    "DLSU_Main_Gate": 180.0
+  },
+  "Razon Building": {
+    "Andrew_Building": 120.0,
+    "Starbucks_DLSU": 210.0,
+    "St_Joseph_Bldg": 159.0
+  }
+}
+
+}
