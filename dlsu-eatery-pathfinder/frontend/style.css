@@ -122,7 +122,7 @@ body {
 .map-container {
     background-color: #f8f9fa;
     border-radius: 8px;
-    overflow: hidden;
+    overflow: visible;
     margin-bottom: 1.5rem;
     border: 1px solid #dee2e6;
     height: 500px;
@@ -134,7 +134,7 @@ body {
     height: 100%;
     background-color: #e9f5db;
     border-radius: 8px;
-    overflow: hidden;
+    overflow: visible;
     transform-origin: center;
     transition: transform 0.3s ease;
 }
