@@ -42,16 +42,16 @@ and interactive visualizations.
    python -m http.server 8000
    ```
 
-Frontend will run on: `http://localhost:8000/`
+   Frontend will run on: `http://localhost:8000/`
 
 ## 💻 Usage
 
-**Access the app**: Open `http://localhost:8000` in your browser.  
-**Find a path**: Select a starting point and destination; choose either UCS or A* for route calculation.  
-**View recommendations**: Explore top eatery suggestions based on your criteria.  
-**Compare algorithms**: Run UCS and A* side by side to see differences in cost, runtime, and path.  
-**Manage data**: Use API endpoints to add, edit, or delete nodes, edges, and eateries.  
-**Visualize results**: See paths highlighted dynamically on the interactive campus map.  
+- **Access the app**: Open `http://localhost:8000` in your browser.  
+- **Find a path**: Select a starting point and destination; choose either UCS or A* for route calculation.  
+- **View recommendations**: Explore top eatery suggestions based on your criteria.  
+- **Compare algorithms**: Run UCS and A* side by side to see differences in cost, runtime, and path.  
+- **Manage data**: Use API endpoints to add, edit, or delete nodes, edges, and eateries.  
+- **Visualize results**: See paths highlighted dynamically on the interactive campus map.  
 
 ## 👥 Team
 
