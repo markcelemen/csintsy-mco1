@@ -1,4 +1,3 @@
-
 {
   "nodes": {
     "DLSU_Main_Gate": [14.5645, 120.9932],
@@ -17,8 +16,7 @@
   "edges": {
     "DLSU_Main_Gate": {
       "Andrew_Building": 85.0,
-      "Bacsilog_King": 50.0,
-      "St_Joseph_Bldg": 180.0
+      "Bacsilog_King": 50.0
     },
     "Andrew_Building": {
       "DLSU_Main_Gate": 85.0,
@@ -30,48 +28,37 @@
       "Andrew_Building": 120.0,
       "McDonalds_DLSU": 55.0,
       "Greenwich_DLSU": 40.0,
-      "KFC_DLSU": 60.0,
-      "Starbucks_DLSU": 80.0
+      "KFC_DLSU": 60.0
     },
     "St_Joseph_Bldg": {
       "Andrew_Building": 95.0,
       "Chowking_DLSU": 40.0,
-      "Halal_Street": 60.0,
-      "DLSU_Main_Gate": 180.0,
-      "Starbucks_DLSU": 90.0
+      "Halal_Street": 60.0
     },
     "Study_Cafe": {
-      "Andrew_Building": 45.0,
-      "Greenwich_DLSU": 65.0
+      "Andrew_Building": 45.0
     },
     "Chowking_DLSU": {
       "St_Joseph_Bldg": 40.0,
-      "Starbucks_DLSU": 70.0,
-      "Halal_Street": 45.0
+      "Starbucks_DLSU": 70.0
     },
     "Starbucks_DLSU": {
       "Chowking_DLSU": 70.0,
       "Halal_Street": 35.0,
-      "McDonalds_DLSU": 65.0,
-      "Henry_Sy_Bldg": 80.0,
-      "St_Joseph_Bldg": 90.0
+      "McDonalds_DLSU": 65.0
     },
     "McDonalds_DLSU": {
       "Henry_Sy_Bldg": 55.0,
       "KFC_DLSU": 40.0,
-      "Starbucks_DLSU": 65.0,
-      "Greenwich_DLSU": 35.0
+      "Starbucks_DLSU": 65.0
     },
     "Greenwich_DLSU": {
       "Henry_Sy_Bldg": 40.0,
-      "KFC_DLSU": 45.0,
-      "Study_Cafe": 65.0,
-      "McDonalds_DLSU": 35.0
+      "KFC_DLSU": 45.0
     },
     "Halal_Street": {
       "St_Joseph_Bldg": 60.0,
-      "Starbucks_DLSU": 35.0,
-      "Chowking_DLSU": 45.0
+      "Starbucks_DLSU": 35.0
     },
     "KFC_DLSU": {
       "Henry_Sy_Bldg": 60.0,

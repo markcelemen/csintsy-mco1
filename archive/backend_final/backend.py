@@ -193,6 +193,19 @@ def remove_node(graph, node_id):
     
     return graph, f"Node {node_id} removed successfully"
 
+# EATERY VALIDATION
+REQUIRED_EATERY_ATTRIBUTES = {
+    'name', 'rating', 'price', 'hours',
+    'power_outlet', 'halal_certified', 'wifi', 'aircon'
+}
+
+def validate_eatery_attributes(attrs):
+    """Ensure all required attributes are present"""
+    missing = REQUIRED_EATERY_ATTRIBUTES - set(attrs.keys())
+    if missing:
+        return False, f"Missing required attributes: {', '.join(missing)}"
+    return True, ""
+
 def remove_edge(graph, node_a, node_b):
     """Remove bidirectional edge between nodes"""
     if node_a not in graph["nodes"] or node_b not in graph["nodes"]:
@@ -265,9 +278,14 @@ def update_eatery(attributes, eatery_id, new_attrs):
     if not isinstance(new_attrs, dict):
         return attributes, "Attributes must be a dictionary"
     
-    attributes.setdefault(eatery_id, {})
+    # === NEW VALIDATION ===
+    # Validate required attributes for new eateries
+    if eatery_id not in attributes:
+        valid, msg = validate_eatery_attributes(new_attrs)
+        if not valid:
+            return attributes, msg
     
-    # Convert boolean features to 1/0
+    # === EXISTING CONVERSION LOGIC ===
     bool_features = {'power_outlet', 'halal_certified', 'wifi', 'aircon'}
     for key, value in new_attrs.items():
         if key in bool_features:
@@ -277,8 +295,13 @@ def update_eatery(attributes, eatery_id, new_attrs):
                 value = 1 if value.lower() in ['true', 'yes', '1', 'y', 't'] else 0
             elif isinstance(value, (int, float)):
                 value = 1 if value != 0 else 0
-        
-        attributes[eatery_id][key] = value
+            new_attrs[key] = value
+    
+    # Update attributes
+    if eatery_id in attributes:
+        attributes[eatery_id].update(new_attrs)
+    else:
+        attributes[eatery_id] = new_attrs
     
     return attributes, f"Eatery {eatery_id} updated successfully"
 
@@ -289,6 +312,27 @@ def remove_eatery(attributes, eatery_id):
     
     del attributes[eatery_id]
     return attributes, f"Eatery {eatery_id} removed successfully"
+
+def add_eatery_node(graph, attributes, node_id, lat, lng, attrs):
+    """Add new eatery node with full attributes in single transaction"""
+    # Validate required attributes
+    valid, msg = validate_eatery_attributes(attrs)
+    if not valid:
+        return graph, attributes, msg
+    
+    # Add to graph
+    graph, msg = add_node(graph, node_id, lat, lng)
+    if "error" in msg:
+        return graph, attributes, msg
+    
+    # Add to attributes
+    attributes, msg = update_eatery(attributes, node_id, attrs)
+    if "error" in msg:
+        # Rollback graph addition
+        graph, _ = remove_node(graph, node_id)
+        return graph, attributes, msg
+    
+    return graph, attributes, f"Eatery node {node_id} created successfully"
 
 # =====================
 # GEOGRAPHIC CALCULATIONS
@@ -352,7 +396,7 @@ def convert_ranks_to_weights(rank_dict):
     Convert user preference rankings to normalized weights
     
     Args:
-        rank_dict (dict): User preference rankings (higher rank = higher priority)
+        rank_dict (dict): User preference rankings (lower rank = higher priority)
         
     Returns:
         dict: Normalized weights summing to 1.0
@@ -374,9 +418,11 @@ def convert_ranks_to_weights(rank_dict):
     if not valid_ranks:
         return DEFAULT_WEIGHTS.copy()
     
-    # Use ranks directly as weights (higher rank = higher weight)
-    total = sum(valid_ranks.values())
-    return {k: v / total for k, v in valid_ranks.items()}
+    # Convert ranks to weights (invert ranks)
+    max_rank = max(valid_ranks.values())
+    inverse_ranks = {k: max_rank - v + 1 for k, v in valid_ranks.items()}
+    total = sum(inverse_ranks.values())
+    return {k: v/total for k, v in inverse_ranks.items()}
 
 def normalize_value(value, min_val, max_val, invert=False):
     """
@@ -633,7 +679,7 @@ def find_optimal_path(start_node, algorithm='astar', custom_ranks=None):
             else:
                 return {"error": "Invalid algorithm. Choose 'ucs' or 'astar'"}
             
-            if cost == float('inf'):
+            if "error" in metrics:
                 continue  # Try next eatery
                 
             eatery_data = attributes.get(eatery_id, {}).copy()
@@ -648,11 +694,9 @@ def find_optimal_path(start_node, algorithm='astar', custom_ranks=None):
                 "weights_used": weights,
                 "open_status": "Open" if is_open(eatery_data.get('hours', '')) else "Closed",
                 "distance": haversine(*graph["nodes"][start_node], *graph["nodes"][eatery_id]),
-                "metrics": {
-                    "execution_time_ms": round(metrics["exec_time"] * 1000, 2),
-                    "nodes_expanded": metrics["nodes_expanded"],
-                    "max_frontier_size": metrics["max_frontier_size"]
-                }
+                "time_complexity": metrics["nodes_expanded"],
+                "memory_complexity": metrics["max_frontier_size"],
+                "execution_time_ms": round(metrics["exec_time"] * 1000, 2) # optional
             }
         
         return {"error": "No reachable eateries found"}
@@ -719,6 +763,44 @@ def get_top_eateries(start_node, top_n=3, custom_ranks=None):
     
     except Exception as e:
         return {"error": f"Unexpected error: {str(e)}"}
+
+def compare_algorithms(start_node, preferences=None):
+    """
+    Compare UCS vs A* algorithms
+    
+    Args:
+        start_node (str): Starting location
+        preferences (dict): User preferences
+        
+    Returns:
+        dict: Comparison results for both algorithms
+    """
+    try:
+        results = {}
+        for algo in ['ucs', 'astar']:
+            start_time = time.perf_counter()
+            path_result = find_optimal_path(start_node, algo, preferences)
+            total_time = time.perf_counter() - start_time
+            
+            if "error" in path_result:
+                results[algo] = {"error": path_result["error"]}
+            else:
+                 metrics = {
+                    "distance": path_result.get("distance", 0),
+                    "time_complexity": path_result.get("time_complexity", 0),
+                    "memory_complexity": path_result.get("memory_complexity", 0),
+                    "total_execution_time_ms": round(total_time * 1000, 2)
+                }
+
+                 results[algo] = {
+                    "path": path_result["path"],
+                    "cost": path_result["cost"],
+                    "eatery": path_result["goal"],
+                    "metrics": metrics
+                }
+        return results
+    except Exception as e:
+        return {"error": f"Comparison failed: {str(e)}"}
 
 # =====================
 # DATA RETRIEVAL

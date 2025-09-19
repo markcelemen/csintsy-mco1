@@ -5,10 +5,11 @@ Endpoints:
 - Pathfinding using UCS and A*
 - Dynamic graph management
 - Eatery preference scoring
+- Algorithm comparison
 """
 
-from flask import Flask, request, jsonify
-from flask_cors import CORS
+from flask import Flask, request, jsonify # type: ignore
+from flask_cors import CORS # type: ignore
 from functools import wraps
 from backend import (
     find_optimal_path,
@@ -21,10 +22,13 @@ from backend import (
     remove_edge,
     update_eatery,
     remove_eatery,
+    add_eatery_node,
     load_graph,
     save_graph,
     load_attributes,
     save_attributes,
+    compare_algorithms,
+    add_eatery_node  
 )
 import time
 import logging
@@ -75,8 +79,7 @@ def api_find_path():
         data.get('algorithm', 'astar'),
         data.get('preferences')
     )
-    status_code = 400 if "error" in result else 200
-    return jsonify(result), status_code
+    return jsonify(result), 400 if "error" in result else 200
 
 @app.route('/top-eateries', methods=['POST'])
 @log_request
@@ -92,6 +95,14 @@ def api_top_eateries():
         return jsonify(result), 200
     return jsonify(result), 400
 
+@app.route('/compare-algorithms', methods=['POST'])
+@log_request
+@validate_json(['start'])
+def api_compare_algorithms():
+    data = request.get_json()
+    result = compare_algorithms(data['start'], data.get('preferences'))
+    return jsonify(result), 400 if "error" in result else 200
+
 # =====================
 # DATA ENDPOINTS
 # =====================
@@ -99,15 +110,13 @@ def api_top_eateries():
 @log_request
 def api_graph_data():
     data = get_graph_data()
-    status_code = 500 if "error" in data else 200
-    return jsonify(data), status_code
+    return jsonify(data), 500 if "error" in data else 200
 
 @app.route('/eateries', methods=['GET'])
 @log_request
 def api_eatery_list():
     data = get_eatery_list()
-    status_code = 500 if "error" in data else 200
-    return jsonify(data), status_code
+    return jsonify(data), 500 if "error" in data else 200
 
 # =====================
 # DYNAMIC UPDATES
@@ -222,6 +231,48 @@ def api_remove_eatery(eatery_id):
     
     return jsonify({"message": msg}), 200
 
+# =====================
+# ATOMIC EATERY CREATION
+# =====================
+@app.route('/graph/eatery-nodes', methods=['POST'])
+@log_request
+@validate_json(['id', 'lat', 'lng', 'attributes'])
+def api_add_eatery_node():
+    data = request.get_json()
+    
+    # Load both datasets
+    graph = load_graph()
+    attributes = load_attributes()
+    
+    if "error" in graph:
+        return jsonify({"error": graph["error"]}), 500
+    if "error" in attributes:
+        return jsonify({"error": attributes["error"]}), 500
+    
+    # Call atomic operation
+    graph, attributes, msg = add_eatery_node(
+        graph,
+        attributes,
+        data['id'],
+        data['lat'],
+        data['lng'],
+        data['attributes']
+    )
+    
+    if "error" in msg.lower():
+        return jsonify({"error": msg}), 400
+    
+    # Save both datasets
+    save_result = save_graph(graph)
+    if save_result is not True:
+        return jsonify(save_result), 500
+    
+    save_result = save_attributes(attributes)
+    if save_result is not True:
+        return jsonify(save_result), 500
+    
+    return jsonify({"message": msg}), 201
+    
 # =====================
 # ERROR HANDLERS
 # =====================
