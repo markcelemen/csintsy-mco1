@@ -24,7 +24,7 @@ and interactive visualizations.
 
 1. Clone the repository
    ```bash
-   git clone https://github.com/your-username/dlsu-eatery-pathfinder.git
+   git clone https://github.com/markcelemen/dlsu-eatery-pathfinder.git
    cd dlsu-eatery-pathfinder
    ```
 3. Set up the backend
